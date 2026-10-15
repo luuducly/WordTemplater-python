@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wordtemplater"
+version = "1.0.0"
+authors = [
+  { name="Lưu Đức Ly", email="luuducly@gmail.com" },
+]
+description = "High-performance, dependency-free Word (.docx) document template engine for Python"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Text Processing :: Markup",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+qr = [
+    "qrcode>=7.0",
+    "pillow>=9.0",
+]

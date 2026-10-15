@@ -1,0 +1,101 @@
+{
+    "items": [
+        {
+            "title": "Quy trình tiếp nhận và xử lý thông tin đăng ký sử dụng HĐĐT (QT1.1.1) và Quy trình tiếp nhận và xử lý thông tin đăng ký sử dụng HĐĐT (QT1.1.2)",
+            "children": [
+                {
+                    "title": "Nhập dữ liệu thông tin đăng ký sử dụng HĐĐT (Mẫu 01/ĐKTĐ-HĐĐT)",
+                    "image": "flowchart TD\n    %% Cấu hình style chung\n    A(\"[1​. Bắt đầu]\")\n    D([Kết thúc])\n    A --> D\n    class A,D terminator;",
+                    "steps": [
+                        {
+                            "title": "NTT nhập mã số thuế đăng ký sử dụng trên cổng thông tin điện tử",
+                            "subtitle": [],
+                            "form": "NNT",
+                            "relatedClassAndMethod": [],
+                            "tableName": [],
+                            "description": "NTT nhập mã số thuế đăng ký sử dụng trên cổng thông tin điện tử",
+                            "change": ""
+                        },
+                        {
+                            "title": "Hệ thống kiểm tra mã số thuế của NTT nhập",
+                            "subtitle": [
+                                "Nếu thông tin mã số thuế không hợp lệ thì quay lại bước 1",
+                                "Nếu thông tin mã số thuế hợp lên thì thực hiện bước 3"
+                            ],
+                            "form": "Job java",
+                            "relatedClassAndMethod": [
+                                "hddt-registration/DeclarationPendingService.checkPendingTaxCode()"
+                            ],
+                            "tableName": [],
+                            "description": "Hàm hddt-registration/ DeclarationPendingService.checkPendingTaxCode()  gọi dịch vụ hddt-category để kiểm tra trạng thái MST của NNT và kiểm tra xem MST của NNT đã được đăng ký sử dụng hóa đơn điện tử chưa",
+                            "change": ""
+                        },
+                        {
+                            "title": "NTT nhập các thông tin khác, ký số và gửi đăng ký",
+                            "subtitle": [],
+                            "form": "NNT",
+                            "relatedClassAndMethod": [],
+                            "tableName": [],
+                            "description": "NTT nhập các thông tin khác, ký số và gửi đăng ký",
+                            "change": ""
+                        },
+                        {
+                            "title": "Hệ thống tiếp nhận thông tin lưu vào CSDL, gửi trả kết quả và gửi gói tin vào trục",
+                            "subtitle": [],
+                            "form": "",
+                            "relatedClassAndMethod": [
+                                "hddt-registration/DeclarationService.processNewRegistrationRecord()",
+                                "hddt-registration/KafkaProducer.sentToRegistrationTopic()"
+                            ],
+                            "tableName": [],
+                            "description": "Hàm hddt-registration/ DeclarationService.processNewRegistrationRecord() thực hiện lưu thông tin tờ khai vào CSDL sau đó gọi hàm hddt- registration/ KafkaProducer.sentToRegistrationTopic() gửi thông tin tờ khai lên trục",
+                            "change": ""
+                        }
+                    ]
+                },
+                {
+                    "title": "Điều chỉnh dữ liệu thông tin đăng ký sử dụng HĐĐT (Mẫu 01/ĐKTĐ-HĐĐT)",
+                    "image": "flowchart TD\n    %% Cấu hình style chung\n    classDef terminator fill:#ffffff,stroke:#000000,stroke-width:1px;\n    classDef process fill:#ffffff,stroke:#000000,stroke-width:1px;\n\n    A([Bắt đầu])\n    B[\"1​. (HT) Chuẩn bị nội dung<br/>email gửi cho đơn vị khai thác<br/>dữ liệu HĐĐT trên cổng thông tin điện tử\"]\n    C[\"2​. (HT) Thực hiện gửi email<br/>cho đơn vị khai thác dữ liệu<br/>HĐĐT trên cổng thông tin điện tử\"]\n    D([Kết thúc])\n\n    A --> B --> C --> D\n\n    class A,D terminator;\n    class B,C process;\n",
+                    "steps": [
+                        {
+                            "title": "Hệ thống trả thông tin đăng ký trước đấy của NTT",
+                            "subtitle": [],
+                            "form": "Job java",
+                            "relatedClassAndMethod": [
+                                "hddt-registration/payerDeclarationService.getAdjustment()"
+                            ],
+                            "tableName": [
+                                "ks_dangky.hddt_dky"
+                            ],
+                            "description": "Hàm hddt-registration/ payerDeclarationService.getAdjustment() lấy thông tin đăng ký trước để hiển thị lên cho NNT",
+                            "change": ""
+                        },
+                        {
+                            "title": "NTT nhập các thông tin muốn thay đổi, ký số và gửi thay đổi đăng ký",
+                            "subtitle": [],
+                            "form": "NNT",
+                            "relatedClassAndMethod": [],
+                            "tableName": [],
+                            "description": "NTT nhập các thông tin muốn thay đổi, ký số và gửi thay đổi đăng ký",
+                            "change": ""
+                        },
+                        {
+                            "title": "Hệ thống tiếp nhận thông tin lưu vào CSDL, gửi trả kết quả và gửi gói tin vào trục",
+                            "subtitle": [],
+                            "form": "Job java",
+                            "relatedClassAndMethod": [
+                                "hddt-registration/ DeclarationService.processUpdateRegistrationRecord()",
+                                "hddt-registration/ KafkaProducer.sentToRegistrationTopic()"
+                            ],
+                            "tableName": [
+                                "ks_dangky.hddt_tkhai"
+                            ],
+                            "description": "Hàm hddt-registration/ DeclarationService.processUpdateRegistrationRecord() thực hiện lưu thông tin tờ khai vào CSDL sau đó gọi hàm hddt-registration/ KafkaProducer.sentToRegistrationTopic() gửi thông tin tờ khai lên trục",
+                            "change": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
