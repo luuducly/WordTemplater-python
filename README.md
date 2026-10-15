@@ -50,6 +50,40 @@ pip install -e .
 
 ---
 
+## How It Works
+
+<p align="center">
+  <img alt="WordTemplater Full Showcase Template" src="docs/images/full_template_showcase.png" width="920"/>
+</p>
+
+WordTemplater bridges visual document authoring in Microsoft Word with automated Python data binding:
+
+1. **Design Visually in Microsoft Word**:
+   - Insert standard Word **MergeFields** (`Ctrl + F9` or `Insert -> Quick Parts -> Field -> MergeField`) or simple guillemets (`«field»`).
+   - Use built-in formatters directly inside field tags: `«upper(Name)»`, `«currency(Total, 'vi-VN')»`, `«number(Qty)»`, `«date(CreatedAt, '%d/%m/%Y')»`, `«table(Products)»`...`«endtable»`, `«loop(Items)»`...`«endloop»`.
+2. **Supply Data**:
+   - Pass any Python dictionary, dataclass, or object. WordTemplater resolves nested dictionary keys (`Customer.Address.City`) and list items (`Items[0].Price`) case-insensitively.
+3. **Export High-Fidelity Documents**:
+   - Generates clean OpenXML `.docx` files or BytesIO streams with **zero Microsoft Office dependency**.
+
+---
+
+## Interactive Desktop GUI Studio
+
+To test templates visually, experiment with mock JSON payloads, and see real-time exports, you can use the cross-platform GUI Studio app in the main [WordTemplater](https://github.com/luuducly/WordTemplater) repository:
+
+```bash
+git clone https://github.com/luuducly/WordTemplater.git
+cd WordTemplater
+dotnet run --project examples/WordTemplater.Desktop
+```
+
+- 🌟 **Built-in Templates**: Enterprise Showcase (QR, Barcode, Images, Conditions, Tables), Pre-printed Bills, Invoices, and Custom `.docx` picker.
+- ✏️ **Direct In-Word Editing**: Click **"✏️ Mở File Template trong Word (.docx)"** to edit template shapes and fields directly in Microsoft Word with automatic reload.
+- ⚡ **Instant Export & View**: One-click generation and instant document inspection.
+
+---
+
 ## Quick Start
 
 ```python
