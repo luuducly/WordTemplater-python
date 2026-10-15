@@ -22,6 +22,19 @@ Design templates visually in Microsoft Word using standard **MergeFields** or `Â
 
 ---
 
+## Multi-Language Ecosystem
+
+WordTemplater is available across multiple programming languages with matching template syntax and feature parity:
+
+| Language | Repository | Package / Install |
+| :--- | :--- | :--- |
+| **Python** *(This repository)* | [WordTemplater-python](https://github.com/luuducly/WordTemplater-python) | `pip install wordtemplater` |
+| **C# (.NET)** | [WordTemplater](https://github.com/luuducly/WordTemplater) | `dotnet add package WordTemplater` |
+| **TypeScript / JavaScript** | [WordTemplater-ts](https://github.com/luuducly/WordTemplater-ts) | `npm install wordtemplater-ts` |
+| **Java** | [WordTemplater-java](https://github.com/luuducly/WordTemplater-java) | `com.github.luuducly:wordtemplater` |
+
+---
+
 ## Installation
 
 ```bash
